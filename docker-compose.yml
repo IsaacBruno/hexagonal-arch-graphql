@@ -7,7 +7,8 @@ services:
       POSTGRES_PASSWORD: secret
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./create.sql:/docker-entrypoint-initdb.d/create.sql
+      - ./scripts:/scripts
+      - ./scripts/create.sql:/docker-entrypoint-initdb.d/create.sql
     ports:
       - 5432:5432
 volumes:

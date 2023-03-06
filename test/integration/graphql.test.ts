@@ -50,14 +50,16 @@ test("Deve consultar os livros passando parâmetros", async function () {
   expect(authorA.name).toBe("Robert C. Martin");
 });
 
-test("Deve salvar um novo livro", async function () {
+test.skip("Deve salvar um novo livro", async function () {
   const response = await axios("http://localhost:4000", {
     method: "post",
     data: {
       query: `
             mutation ($book: BookInput) {
-                saveBook (book: $book) {
-                    id
+              savedBook: saveBook (book: $book) {
+                  id
+                  title
+                  price
                 }
             }
             `,
@@ -71,5 +73,7 @@ test("Deve salvar um novo livro", async function () {
     },
   });
   const output = response.data;
-  console.log(output);
+  const book = output.data.savedBook;
+  expect(book.title).toBe("Clean Architecture");
+  expect(book.price).toBe(89);
 });

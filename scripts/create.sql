@@ -18,6 +18,18 @@ create table book_author (
     id_author uuid
 );
 
+create table orders (
+    id_order uuid,
+    email text,
+    amount numeric
+);
+
+create table order_book (
+    id_order uuid,
+    id_book uuid,
+    price numeric
+);
+
 insert into book (id_book, title, price) values ('18c0eb16-de43-45f8-b4e6-7b05eb3ce76f', 'Clean Code', 59);
 insert into author (id_author, name) values ('6d885bfc-d8dd-46b4-9fcf-35aaa93268df', 'Robert C. Martin');
 insert into book_author (id_book, id_author) values ('18c0eb16-de43-45f8-b4e6-7b05eb3ce76f', '6d885bfc-d8dd-46b4-9fcf-35aaa93268df');
